@@ -34,7 +34,7 @@ function PostDetails({ post }: Props) {
                 : 'https://www.insoundtrack.com/images/unknown-artist.gif?v=4.6.3'
             }
             alt=''
-            className='h-10 w-10 rounded-full'
+            className='h-10 w-10 object-cover rounded-full'
           />
           <p className='font-extralight text-sm'>
             Blog post by{' '}
