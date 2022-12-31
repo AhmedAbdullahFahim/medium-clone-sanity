@@ -1,6 +1,6 @@
 import { createClient } from 'next-sanity'
 
-import createImageUrlBuilder from './sanityyoutube/node_modules/@sanity/image-url'
+import createImageUrlBuilder from './@sanity/image-url'
 
 export const config = {
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
