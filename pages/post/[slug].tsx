@@ -51,7 +51,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     title,
     author-> {
       name,
-      image
+      image,
+      imageUrl
     },
     'comments': *[
       _type == "comment" &&
