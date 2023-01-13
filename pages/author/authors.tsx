@@ -1,6 +1,6 @@
 import Authors from '../../components/Authors'
 import { Author } from '../../typings'
-import { sanityClient } from '../../sanity'
+import { client } from '../../sanity'
 
 interface Props {
   authors: Author[]
@@ -21,7 +21,7 @@ export const getServerSideProps = async () => {
     imageUrl,
   }`
 
-  const authors = await sanityClient.fetch(query)
+  const authors = await client.fetch(query)
 
   return {
     props: {

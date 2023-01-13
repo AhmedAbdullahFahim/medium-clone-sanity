@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next'
-import { sanityClient } from '../../sanity'
+import { client } from '../../sanity'
 import { Post } from '../../typings'
 import PostDetails from '../../components/PostDetails'
 import CommentForm from '../../components/CommentForm'
@@ -30,7 +30,7 @@ export const getStaticPaths = async () => {
     }
   }`
 
-  const posts = await sanityClient.fetch(query)
+  const posts = await client.fetch(query)
 
   const paths = posts.map((post: Post) => ({
     params: {
@@ -66,7 +66,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     imageUrl
   }`
 
-  const post = await sanityClient.fetch(query, { slug: params?.slug })
+  const post = await client.fetch(query, { slug: params?.slug })
 
   if (!post) {
     return {

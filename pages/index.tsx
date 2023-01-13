@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Banner from '../components/Banner'
-import { sanityClient } from '../sanity'
+import { client } from '../sanity'
 import { Post } from '../typings'
 import Posts from '../components/Posts'
 
@@ -42,7 +42,7 @@ export const getServerSideProps = async () => {
     imageUrl
   }`
 
-  const posts = await sanityClient.fetch(query)
+  const posts = await client.fetch(query)
 
   return {
     props: {

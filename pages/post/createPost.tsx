@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import Link from 'next/link'
 import { Dialog, Transition } from '@headlessui/react'
 import PostForm from '../../components/PostForm'
-import { sanityClient } from '../../sanity'
+import { client } from '../../sanity'
 import { Author } from '../../typings'
 import { getSession, useSession } from 'next-auth/react'
 
@@ -101,7 +101,7 @@ export const getServerSideProps = async (context: any) => {
     const query = `*[_type == "author" && email == $email][0]{
       _id,
     }`
-    author = await sanityClient.fetch(query, { email: session.user.email })
+    author = await client.fetch(query, { email: session.user.email })
   }
   return {
     props: {
