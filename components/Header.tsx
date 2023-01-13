@@ -98,7 +98,7 @@ function Header() {
                         className={`${
                           active ? 'bg-gray-100' : 'text-gray-900'
                         } group flex space-x-3 font-medium w-full items-center rounded-md px-2 py-2 text-sm cursor-pointer`}
-                        onClick={signOut}
+                        onClick={() => signOut()}
                       >
                         <ArrowRightOnRectangleIcon className='h-10 w-10 p-2 bg-gray-200 rounded-full' />
                         <p>Log Out</p>
