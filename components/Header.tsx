@@ -31,7 +31,7 @@ function Header() {
           </Link>
         </div>
       </div>
-      <div className='relative flex items-center space-x-5'>
+      <div className='relative flex items-center space-x-2 sm:space-x-5'>
         {!session && (
           <Link href='/author'>
             <h3 className='text-white bg-green-600 rounded-full px-4 py-1 text-center'>
