@@ -1,23 +1,25 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { useSession } from 'next-auth/react'
 import { Author } from '../typings'
-
-interface Props {
-  authors: Author[]
-}
 
 interface IFormInput {
   title: string
   description: string
-  author: string
   body: string
   _id: string
   slug: string
   imageUrl: string
 }
 
-function PostForm({ authors }: Props) {
+interface Props {
+  author: Author
+}
+
+function PostForm({ author }: Props) {
+  console.log(author)
+
   const route = useRouter()
   const [imageAssets, setImageAssets] = useState<any>()
   const [imageTarget, setImageTarget] = useState<any>()
@@ -67,12 +69,9 @@ function PostForm({ authors }: Props) {
         .then((r) => r.json())
         .catch((err) => console.log(err))
       data.slug = data.title.toLowerCase().replaceAll(' ', '-')
-      const selectedAuthor: any = authors.find(
-        (author) => author.name === data.author
-      )
       data = {
         ...data,
-        _id: selectedAuthor._id,
+        _id: author._id,
         imageUrl: imageData.secure_url,
       }
       setAuthorId(data._id)
@@ -163,19 +162,6 @@ function PostForm({ authors }: Props) {
           />
         </label>
         <label>
-          <span className='block'>Author</span>
-          <select
-            className='block w-full shadow border rounded py-2 px-3 form-input mb-4 mt-1 ring-yellow-500 outline-none focus:ring'
-            {...register('author', { required: true })}
-          >
-            {authors.map((author) => (
-              <option key={author._id} className='my-5' value={author.name}>
-                {author.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
           <span className='block'>Body</span>
           <textarea
             {...register('body', { required: true })}
@@ -187,9 +173,6 @@ function PostForm({ authors }: Props) {
         <div className='flex flex-col p-5'>
           {errors.title && (
             <span className='text-red-500'>- The Title field is required</span>
-          )}
-          {errors.author && (
-            <span className='text-red-500'>- The Author field is required</span>
           )}
           {errors.description && (
             <span className='text-red-500'>

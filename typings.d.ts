@@ -1,3 +1,20 @@
+import NextAuth from 'next-auth'
+
+declare module 'next-auth' {
+  export interface Session {
+    user: {
+      name: string
+      email: string
+      image: string
+    }
+  }
+}
+
+export interface Provider {
+  id: string
+  name: string
+}
+
 export interface Post {
   _id: string
   _createdAt: string
@@ -25,6 +42,7 @@ export interface Author {
   _id: string
   _createdAt: string
   name: string
+  email: string
   image: {
     asset: {
       url: string
