@@ -14,6 +14,7 @@ export default function Home({ posts }: Props) {
       <Head>
         <title>Medium Blog</title>
         <link rel='icon' href='/favicon.ico' />
+        <meta charSet='utf-8' />
       </Head>
       <Banner />
       <Posts posts={posts} />

@@ -5,6 +5,7 @@ import PostForm from '../../components/PostForm'
 import { client } from '../../sanity'
 import { Author } from '../../typings'
 import { getSession, useSession } from 'next-auth/react'
+import Head from 'next/head'
 
 interface Props {
   author: Author
@@ -22,6 +23,9 @@ function createPost({ author }: Props) {
   }
   return (
     <>
+      <Head>
+        <title>Create Post</title>
+      </Head>
       {session ? (
         <PostForm author={author} />
       ) : (

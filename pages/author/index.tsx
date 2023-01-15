@@ -2,13 +2,21 @@ import AuthorForm from '../../components/AuthorForm'
 import { getProviders, getSession } from 'next-auth/react'
 import { Provider } from '../../typings'
 import { client } from '../../sanity'
+import Head from 'next/head'
 
 interface Props {
   providers: [Provider]
 }
 
 function createAuthor({ providers }: Props) {
-  return <AuthorForm providers={providers} />
+  return (
+    <div>
+      <Head>
+        <title>Become An Author</title>
+      </Head>
+      <AuthorForm providers={providers} />
+    </div>
+  )
 }
 
 export const getServerSideProps = async (context: any) => {
@@ -32,7 +40,6 @@ export const getServerSideProps = async (context: any) => {
           .replaceAll('.', '-')
           .replaceAll('_', '-'),
       }
-      console.log('author not found', data)
       await client.create({
         _type: 'author',
         name: data.name,
@@ -43,8 +50,6 @@ export const getServerSideProps = async (context: any) => {
         },
         imageUrl: data.image,
       })
-    } else {
-      console.log('author was found')
     }
   }
   return {

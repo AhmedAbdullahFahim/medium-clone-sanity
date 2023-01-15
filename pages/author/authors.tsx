@@ -1,13 +1,21 @@
 import Authors from '../../components/Authors'
 import { Author } from '../../typings'
 import { client } from '../../sanity'
+import Head from 'next/head'
 
 interface Props {
   authors: Author[]
 }
 
 function author({ authors }: Props) {
-  return <Authors authors={authors} />
+  return (
+    <div>
+      <Head>
+        <title>Authors</title>
+      </Head>
+      <Authors authors={authors} />
+    </div>
+  )
 }
 
 export default author

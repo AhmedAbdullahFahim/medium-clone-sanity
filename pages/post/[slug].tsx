@@ -4,6 +4,7 @@ import { Post } from '../../typings'
 import PostDetails from '../../components/PostDetails'
 import CommentForm from '../../components/CommentForm'
 import Comments from '../../components/Comments'
+import Head from 'next/head'
 
 interface Props {
   post: Post
@@ -12,6 +13,9 @@ interface Props {
 function Post({ post }: Props) {
   return (
     <>
+      <Head>
+        <title>{post.title}</title>
+      </Head>
       <PostDetails post={post} />
       <hr className='max-w-lg my-5 mx-auto border border-yellow-500' />
       <CommentForm postId={post._id} />
