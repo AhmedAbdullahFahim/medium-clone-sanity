@@ -12,11 +12,6 @@ export const authOptions = {
   pages: {
     signIn: '/author',
   },
-  callbacks: {
-    async redirect() {
-      return '/'
-    },
-  },
 }
 
 export default NextAuth(authOptions)

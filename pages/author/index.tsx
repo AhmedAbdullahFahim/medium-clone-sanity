@@ -19,39 +19,8 @@ function createAuthor({ providers }: Props) {
   )
 }
 
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps = async () => {
   const providers = await getProviders()
-  const session = await getSession(context)
-  if (session) {
-    const query = `*[_type=="author" && email == $email]{
-      name,
-      _id,
-      email,
-    }`
-    const authors = await client.fetch(query, {
-      email: session?.user.email,
-    })
-    if (authors.length === 0) {
-      const data = {
-        ...session.user,
-        tempSlug: session.user.email
-          .toLowerCase()
-          .replaceAll('@', '-')
-          .replaceAll('.', '-')
-          .replaceAll('_', '-'),
-      }
-      await client.create({
-        _type: 'author',
-        name: data.name,
-        email: data.email,
-        slug: {
-          _type: 'slug',
-          current: data.tempSlug,
-        },
-        imageUrl: data.image,
-      })
-    }
-  }
   return {
     props: {
       providers,

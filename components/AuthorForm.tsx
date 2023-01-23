@@ -20,7 +20,7 @@ function AuthorForm({ providers }: Props) {
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
           <button
-            onClick={() => signIn(provider.id)}
+            onClick={() => signIn(provider.id, { callbackUrl: '/' })}
             className='py-5 px-20 bg-green-600 rounded-full text-white text-center cursor-pointer mt-10'
           >
             Sign in with {provider.name}
