@@ -11,12 +11,7 @@ function AuthorForm({ providers }: Props) {
   const { data: session } = useSession()
   return (
     <div className='flex flex-col justify-center items-center mt-20'>
-      <img
-        src='https://cdn-icons-png.flaticon.com/512/2991/2991148.png'
-        height={300}
-        width={300}
-        alt='google'
-      />
+      <img src='/google-logo.png' height={300} width={300} alt='google' />
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
           <button
