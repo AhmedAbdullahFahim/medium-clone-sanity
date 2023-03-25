@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { signIn, useSession } from 'next-auth/react'
 import { Provider } from '../typings'
+import Image from 'next/image'
 
 interface Props {
   providers: [Provider]
@@ -11,7 +12,7 @@ function AuthorForm({ providers }: Props) {
   const { data: session } = useSession()
   return (
     <div className='flex flex-col justify-center items-center mt-20'>
-      <img src='/google-logo.png' height={300} width={300} alt='google' />
+      <Image src='/google-logo.png' height={300} width={300} alt='google' />
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
           <button
