@@ -11,13 +11,11 @@ function AuthorForm({ providers }: Props) {
   const router = useRouter()
   const { data: session } = useSession()
   return (
-    <div className='flex flex-col justify-center items-center mt-20'>
-      <Image
+    <div className='flex flex-col justify-center items-center text-center p-24'>
+      <img
         src='/google-logo.png'
-        height={300}
-        width={300}
         alt='google'
-        className='max-h-[300px]'
+        className='w-80'
       />
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
